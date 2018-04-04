@@ -11,7 +11,7 @@ A basic Kivy implementation of  Conway's Game of Life.
  * Cell history tracked with changing color, from blue (new)  to red (old)
 
 ## Usage
-    $python game/main.py
+    $python game-of-life/main.py
 
 ## Requirements
 * Python 3
