@@ -1,0 +1,115 @@
+#:kivy 1.10
+
+# game view
+
+<Cell>:
+
+  canvas.before:
+    Color:
+      rgba: 0.5, 0.5, 0.5, 1
+    Rectangle:
+      pos: self.pos
+      size: self.size
+
+<Grid@GridLayout>:
+
+  canvas.before:
+    Color:
+      rgba: 0, 0, 0, 0
+    Rectangle:
+      pos: self.pos
+      size: self.size
+
+  cols: 55
+  rows: 40
+  spacing: 1, 1
+  padding: 5, 5, 5, 5
+
+<Bar@BoxLayout>:
+
+  orientation: 'horizontal'
+  cols: 5
+  padding: 2, 2, 2, 2
+
+
+<Game>:
+  orientation: 'vertical'
+  grid: grid
+
+  Grid:
+    id: grid
+    size_hint: (1, 0.8)
+
+  Bar:
+    size_hint: (1, 0.2)
+
+    Spinner:
+      text : "Worlds"
+      font_size: 22      
+      values : root.get_names()
+      id: spinner_id
+      on_text: root.spinner_clicked(spinner_id.text)
+
+    Button: 
+      id: start 
+      on_press: root.start()
+
+      Image:
+        source: 'images/start.png'
+        y: self.parent.y + self.parent.height-140 
+        x: self.parent.x + 30
+        size: 150, 150
+        allow_stretch: True        
+
+    Button:
+      on_press: root.pause()
+
+      Image:
+        source: 'images/pause2.png'
+        y: self.parent.y + self.parent.height-140 
+        x: self.parent.x + 25
+        size: 150, 150
+        allow_stretch: True     
+      
+    Button:
+      on_press: root.reset()
+
+      Image:
+        source: 'images/stop.png'
+        y: self.parent.y + self.parent.height-155 
+        x: self.parent.x + 10
+        size: 185, 185
+        allow_stretch: True           
+    
+    FloatLayout:
+
+      Slider:
+        id: slider
+        orientation: "vertical"
+        min: 1 
+        max: 20
+        on_value: root.change_fps(*args)
+        cursor_size: (25,25)
+        size_hint: (0.2, 0.9)
+        pos_hint: {"x": 0.4, "top": 0.9}
+        background_width: 40
+
+      Label:
+        text: str(int(slider.value))
+        size_hint: (0.1, 0.1)
+        pos_hint: {"x": 0.6, "top": 0.2}
+        font_size: 18
+
+      Label:
+        text: "FPS"
+        size_hint: (0.1, 0.1)
+        pos_hint: {"x": 0.45, "top": 1}
+        font_size: 18
+
+      Label:
+        id : step
+        text: str(grid.steps)
+        size_hint: (0.1,0.1)
+        pos_hint: {"x": 0.88, "top": 1}
+        font_size: 18
+
