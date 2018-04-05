@@ -11,7 +11,7 @@ from world_parser import *
 
 # world: set representing the world of living cells;
 # each alive cell is a (x, y) pair of integer coordinates on the grid.
-# If a cell borns, it is added to the world; if a cell dies, it is removed from the world.
+# If a cell is born, it is added to the world; if a cell dies, it is removed from the world.
 
 world =  set()
 
