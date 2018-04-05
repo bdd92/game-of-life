@@ -6,7 +6,7 @@ from world_parser import *
 import model
 
 
-# game controller, also the root object
+# game controller
 class Game(BoxLayout):
 
   grid = ObjectProperty(None)
